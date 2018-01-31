@@ -1,0 +1,16 @@
+description: resource to deploy iperf vms over heat
+resources:
+  - name: hibench
+    generator: git:ssh://git@gitlab.gwdg.de/scotty/resource/static.git
+    params:
+      - ip: 141.5.113.38 
+        key_name: test.key
+        user: 'cloud'
+workloads:
+  - name: workload_hibench
+    generator: file:./
+    params:
+      cpu: 10
+      timeout: 20
+    resources:
+      hibench: hibench
